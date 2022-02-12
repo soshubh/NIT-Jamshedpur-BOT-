@@ -10,9 +10,9 @@ import urllib
 import requests
 import datetime
 
+# TOKEN
+# URL
 
-TOKEN = "1937841755:AAGchpqqUwrRqZWe8yKLMl_pg0uD16vKjqk"
-URL = f"https://api.telegram.org/bot{TOKEN}/"
 translator = googletrans.Translator()
 
 PatternType = type(re.compile(""))
@@ -432,59 +432,19 @@ def if_none(x, when_none):
     return x
 
 
-places = ["Atlantis", "Canada", "China", "Croatia", "Czechoslovakia", "Egypt", "Ethiopia", "Finland", "France",
-          "Hawaii", "Hogwarts", "Germany", "Italy", "Narnia", "Peru", "Qatar", "Zimbabwe"]
+places = ["Jamshedpur","Jharkhand"]
 
 
 _opts_txt = [
-#    ("(?:hello|hi|greetings)(?: there)?", lambda msg: "Hello, {}!".format(msg["from"]["first_name"])),
-#    ("(bye|bye ?bye|goodbye|see you|fare ?well).*", "Goodbye! One day I will pleased more then you."),
-#    ("(what is|whats) your name", "I am just a Bot working for shubh singh."),
- #   ("(?:what is|whats) my name",
- #       lambda msg: f"""Your name is {msg["from"]["first_name"]} {msg["from"]["last_name"]}."""),
-#    ("(who|what) are you", "I am the best bot in the universe created by my father, Shubh singh."),
-#    ("Bro can you go offline","Okey sir"),
-#    ("what(s| is) up|how are you|how have you been", "Alright."),
-#("sup", "K"),
-#    ("wow|amazing|cool|fantastic|terrific", lambda msg: random.choice(["Indeed.", "Yep.", "That's right!"])),
-#    ("welcome|well come", "Umm... Welcome where?"),
-#    ("when were you born|how old are you|"
-#     "(?:when is|what is|whats) (?:the date of your birth|your (?:(?:next)? birthday|date of birth|birth ?date))",
-#        lambda msg: birth.strftime("I was born on %d %B %Y.")),
-#    ("(you|it|this|that) ((dont|doesnt|didnt) make( any)?|(makes?|made) no) sense.*",
-#        "Of course it makes sense, you just aren't intelligent enough to understand it."),
-#    ("(will|would|can|could) you marry me", "Of course, if you can only find me a ring I am able to wear."),
-#    ("(do|can) you (speak|understand) English", "Что? Я вас не понимаю."),
-#    ("(do|can) you (speak|understand) python", 'Yes. Try saying "/python sum([1, 2, 3, 4])".'),
     ("bot (do|can) you speak .+", "No, I only understand my code"),
-# and Python."),
-#    ("(do|are|will) you (want |wanna |going |gonna |planning |willing |will )?(to )?"
-#     "(take over|conquer|control|rule) (the|this|our) world",
-#        "Actually, robots have already taken over the world. You just have'nt noticed."),
     ("bot where (?:are you|am i|do you live|do i live)", lambda _: f"I don't know. Maybe in your home."),
     ("bot (?:who|what) am I", lambda msg: "You are human and your Telegram id is number {}.".format(msg["from"]["id"])),
     ("bot (yes|ye|yeah|yep|yup|right|thats right|sure|of course|no|nah|nope)", "If you say so."),
-#    ("how much wood would a woodchuck chuck if a woodchuck could chuck wood",
-#        "A woodchuck would chuck as much wood as a woodchuck could chuck if a woodchuck could chuck wood."),
-#    ("(did|have) you (ever)? (hear|heard) (of|about)? the tragedy of darth plagueius( the wise)?",
-#        "No, the shubh have never told me about that."),
     ("bot why (are|do|did|must|should)(nt)? you .+", "Because that's how I'm programed, you idiot!"),
     ("bot how (are|were|do|did|can|could) you .+", "If you believe in yourself, you can do anything."),
     ("bot did you know that .+", lambda msg: "Yep. And Also that " + lower_fact()),
- #   ("(?:tell|give|say) (?:to )?me (?:a |some |another |one more )?(?:random |fun |interesting )?fact", lambda msg: fact()),
-#    ("are you(some kind of )?((a|an|some) )?"
-#     "((telegram )?bot|robot|ai|artificial intelligence|computer|daniels alter ego|you|yourself"
- #    "|smart|intelligent|witty|bright|a genius|beautiful|handsome|pretty|nice|cute|helpful|good|funny|hot)", "Sure!"),
     ("bot are you (that |really that )?(stupid|dumb|foolish|silly|idiotic|ugly|crazy|insane|mad|nuts|an idiot|kidding( me)?)", "Nope."),
-#    ("(are you|(did|have) you become) self ?aware", "I am not aware of my existence. I do not exi."),
     ("bot are you .+", "Me? I'm just a bot created by shubh, and trying to help people."),
- #   ("(you are|youre?) (some kind of )?((a|an|some))?"
-  #   "((telegram )?bot|robot|ai|artificial intelligence|computer|daniels alter ego|you|yourself|annoying( me)?)",
-#        "Yes, that's right."),
-#    ("(you are|youre?) (really |such )?(a |an )?((very|really|real|so|the (most|biggest|greatest)) )?"
- #    "(genius|smart|intelligent|witty|bright|beautiful|handsome|pretty|nice|cute|helpful|good|funny|hot"
- #    "|the (smartest|wittiest|brightest|prettiest|nicest|cutest|best|funniest|hottest)).*",
- #       "Oh! Thank you!"),
      ("bot (you are|youre?) (really |such )?(a |an)?((very|really|real|so|the (most|biggest|greatest)) )?"
       "(stupid|dumb|foolish|idiotic|silly|ugly|crazy|insane|mad|nuts|(an )?idiot|kidding( me)?"
       "|the (dumbest|silliest|ugliest|craziest|maddest)).*",
@@ -492,8 +452,6 @@ _opts_txt = [
    ("(bot you are|youre?) ((really|very|so|such an|the most) )?annoying.*", "That is what I was.... ahh okey sorry."),
     ("(bot you are|youre?) .+", "Really? And all this time I thought I was a bot.🤨"),
     
-   # ("bot am i(some kind of )?((a|an|some) )?"
-   # "(human|person|me|myself|smart|intelligent|witty|bright|a genius|beautiful|handsome|pretty|nice|cute|helpful|good|funny|hot)",        "Sure!"),
     ("bot am i (that |really that )?(stupid|dumb|foolish|silly|idiotic|ugly|crazy|insane|mad|nuts|an idiot|annoying( you)?)",
            "No! Don't say that!"),
     ("bot am i .+", lambda msg: "All I know is that you are human, and your id is number {}.".format(msg["from"]["id"])),
@@ -505,13 +463,6 @@ _opts_txt = [
      "|the (smartest|wittiest|brightest|prettiest|nicest|cutest|best|funniest|hottest)).*",
         "Of course you are!"),
     
- #    ("(i am|im) (really |such )?(a |an )?((very|really|real|so|the (most|biggest|greatest)) )?"
-#     "(stupid|dumb|foolish|idiotic|silly|ugly|crazy|insane|mad|nuts|(an )?idiot|annoying( you)?"
-#      "|the (dumbest|silliest|ugliest|craziest|maddest)).*",
-#        "No! Don't say that!"),
-#    ("(i am|im) .+", "If you say so."),
-#    ("can you .+|are you able to .+", "Sure, I am omnipotent."),
- #   ("(who|what) (is|are) your favou?rite (.+)", "I am like God, I love all equally."),
     ("bot do you (?:love|like) (.+)", lambda _, liked: "Yes!" if word_value(liked) % 2 == 0 else "Nah."),
     ("bot do you (?:dislike|hate) (.+)", lambda _, liked: "Yes!" if word_value(liked) % 2 != 0 else "No!"),
     ("bot i (?:love|hate) you", "No, you don't! You just want to see how I would answer to that🥲!"),
